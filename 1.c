@@ -10,7 +10,7 @@ int main()
 	json_error_t j_error;
 	char buf[2000];
 	int size;		
-	int hb;
+	int hb, hb2;
 
 	fp = fopen("./json.txt", "r");
 	
@@ -23,9 +23,9 @@ int main()
 				,j_error.line, j_error.column, j_error.position, j_error.source, j_error.text);	
 		}
 		
-		json_unpack(json_obj, "{s:i}", "heartbeat", &hb);
+		json_unpack(json_obj, "{s:{s:i, s:i}}", "first", "heartbeat", &hb, "heartbeat2", &hb2);
 		
-		printf("Heartbeat = %d\n", hb);
+		printf("size = %d, Heartbeat = %d, heartbeat2 = %d\n", size, hb, hb2);
 	}
 	
 	return 0; 
